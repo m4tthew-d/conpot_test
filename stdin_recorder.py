@@ -25,14 +25,6 @@ def main():
 
 class Test(unittest.TestCase):
 
-    def check_equivalence(self, test, log): # Reads files and checks for equality 
-        while 1:
-            in_line = os.read(test, 1024*4)
-            log_line = os.read(log, 1024*4)
-            if not in_line or not log_line:
-                break
-            self.assertEqual(in_line, log_line)
-
     def test_written_file(self):    # Uses english text test file
         test_file = os.open('moby.txt', os.O_RDONLY)
         recorder(test_file)
@@ -57,7 +49,9 @@ class Test(unittest.TestCase):
         same = filecmp.cmp('binary.txt','stdin_log.txt', False)
         self.assertTrue(same)
 
+
 #if __name__ == '__main__':          # Runs Test
 #    unittest.main()
+
 
 main()
