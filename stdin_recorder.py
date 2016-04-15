@@ -15,7 +15,7 @@ def recorder(fd, trm):
         while 1:
             try:
                 if trm:
-		            tty.setraw(fd)
+		    tty.setraw(fd)
                     line = os.read(fd, 1)   # Reads 1 byte at a time
                 else:
                     line = os.read(fd, 1024*4)  # Reads up to 4KB at a time for file reading
@@ -25,13 +25,13 @@ def recorder(fd, trm):
                 print e # Printing to show entering 'except' section
             finally:
                 if trm:
-		            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-		            check = ord(line)
-		            if check in [3, 4]:
-		    	        break
-		            print(line)
-		        log.write(line)  # writes line to the file
-		        log.flush()
+		    termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+		    check = ord(line)
+		    if check in [3, 4]:
+		    	break
+		    print(line)
+		log.write(line)  # writes line to the file
+		log.flush()
 
 def main():
     trm = 1
